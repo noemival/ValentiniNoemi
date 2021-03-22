@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+	font-size: 93%;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 90%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 90%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	font-size: 90%;
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	font-size: 90%;
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	 
+    font-size: 18px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+	font-size: 90%;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px;
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #ccffcc;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+
+}
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}
+div.remark{
+	background-color: #E3F2FD;
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+</style>
+    
+<head>
+   
+<title>resumableBoundaryWalker</title></head>
+    
+<body>
+<div id="top">
+<h1>Lab ISS | the project resumableBoundaryWalker<font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+This case-study starts to deal with the design and development of proactive/reactive software systems which work under user-control.
+ 
+<h2>Requirements</h2>
+
+ 
+<div class="remark">
+ 
+Design and build a software system (named from now on 'the application') that leads the robot described in 
+<a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="lab"><em>VirtualRobot2021.html</em></a> 
+to walk along the boundary of a empty, rectangular room under user control. 
+<br/>
+More specifically, the <ks>user story</ks> can be summarized as follows:
+<br/>
+<table style="width:98%">
+<tbody>	
+
+<tr>
+<td style="width:65%" >
+the robot is initially located at the <ks>HOME</ks> position, as shown in the picture on the rigth
+</td>
+<td><center><img src="./img/emptyGridWithHome.png" alt="emptyGridWithHome" width="35%"></center>
+</td>
+</tr>
+
+<tr>
+<td style="width:65%" >
+ the application presents to the user a <ks>consoleGui</ks> similar to that shown in the picture on the rigth
+</td>
+<td><center><img src="./img/stopResumeConsole.png" alt="stopResumeConsole" width="35%"></center>
+</td>
+</tr>
+
+
+
+<tr>
+<td style="width:65%" >
+when the user hits the button <k>RESUME</k> the robot <ks>starts or continue to walk</ks> along the boundary, while
+updating a <ks>robot-moves history</ks>;
+</td>
+<td> 
+</td>
+</tr>
+
+<tr>
+<td style="width:65%" >
+when the user hits the button <k>STOP</k> the robot stop its journey, waiting for another <k>RESUME</k> ;
+</td>
+<td> 
+</td>
+</tr>
+
+<tr>
+<td style="width:65%" >
+when the robot reachs its <ks>HOME</ks> again, the application <i>shows the robot-moves history</i> on the standard output device.
+</td>
+<td> 
+</td>
+</tr>
+
+
+ </tbody>
+</table>
+
+ 
+</div>
+
+
+<h2>Requirements analysis</h2>
+
+
+We can highligh the following words to understand the requirements.
+Some words was clarify in this project: <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html#requirementanalysis" target="web">boundaryWalk.html</a><br>
+<ks>consoleGui: </ks> a console with two bottom which sent information to the application;
+
+<ks> shows the robot-moves history: </ks> it means that the application need a way to memorize the moves.
+
+The customer does not impose any requirement on the programming language used to develop the application.
+
+<h3>User sotry</h3>
+The user story is described in the requirements.
+
+<h2>Problem analysis</h2>
+<table style="width:98%">
+<tr>
+<td style="width:65%" >
+<li>In the <a href="VirtualRobot2021.html#commands" target="web">VirtualRobot2021.html: commands</a> the customer states
+that the robot can receive move commands in two different ways:
+    <ul>
+    <li>by sending messages to the port <tt>8090</tt> using  <ks>HTTP POST</ks> </li>
+    <li>by sending messages to the port <tt>8091</tt> using a <ks>websocket</ks> </li>
+    </ul>
+</li>
+</td>
+<td><center><img src="./img/rBWPort.png" alt="emptyGridWithHome" width="70%"></center>
+</td>
+</tr>
+
+
+</table>
+<table style="width:98%">
+<tr>
+<td style="width:65%" >
+The user can start and, if he want, interrup the application through a ConsoleGui, this requirements suggest to evaluate the correct way to choose the better port to send message in more efficiently way and observe pattern. 
+</td>
+<td><center><img src="./img/RBWguiinteraction.png" alt="emptyGridWithHome" width="70%"></center>
+</td>
+</tr>
+
+
+</table>
+Because the application shows the robot history moves the end of boundary should evaluate to use a map where updating the robot moves.<br> 
+<h3>Possible Resource</h3>
+<li><ks>for ConsolGui:</ks> there are some  <a href="https://en.wikipedia.org/wiki/List_of_widget_toolkits" target="web">Toolkits</a> for example <a href="https://en.wikipedia.org/wiki/Apache_Pivot" target="web">Apace_Pivot</a> to implements consoleGui Interface. Or the  <a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui/Consolegui.java" target="code">Consolegui.java</a>  
+(in project <a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui" target="code">it.unibo.virtualrobotclient</a>) 
+</li>
+
+<li><ks>for MapUtility:</ks> could be implemented in Kotlin. It supports mutables and not maps, it is a jvm runnable language which make an important interoperability with Java, and also it is adaptable.
+</li>
+
+
+<li><ks>Some other resources:</ks> <li>The  <a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotMovesInfo.java" target="code">RobotMovesInfo.java</a>  
+(in project <a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="code">it.unibo.virtualrobotclient</a>) </li>
+
+
+<li>The  <a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotInputController.java" target="code">RobotInputController.java</a>  
+(in project <a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="code">it.unibo.virtualrobotclient</a>) </li>
+</li>
+
+<h3>Logical architecture</h3>
+It is important specify that the application could be knowledge indipendent.
+
+ Websocket could make the application more versatile and indipendet in exchanging messages. 
+Using a websocket library breaks the single flow of application control into several threads.
+
+The following resources could be usefully exploited to reduce the development time of a first prototype of the application:
+
+
+Annotations: Using annotated POJOs, developers can interact with WebSocket life cycle events.
+
+To exploit the asynchronicity of the interaction in a structured way, the reference design model is the Observer model.
+
+<h3>Timing</h3> 
+The expected time required for the development of the application is (no more than) 6 hours.
+<h2>Test plans</h2> 
+ <kc>Time</kc> is set for moves <ks>w, s</ks> Every each moves are of a <k>robot-unity</k>. An <k>envirorment map</k> will be built incrementally after every each moves.  At the end the application shows the roboth path. For example (<kc>1</kc> represent the robot-unity):
+<pre>
+|r, 1, 1, 1, 1, 
+|1, 0, 0, 0, 1, 
+|1, 0, 0, 0, 1, 
+|1, 0, 0, 0, 1, 
+|1, 1, 1, 1, 1, X, 
+|X, 
+</pre>
+
+</li>
+
+<h2>Project</h2> 
+The project was implemented in Java and Kotlin languages. 
+It was based on the study of last works: <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html#Configuration based on Java annotations (see Lab ISS | About annotations)" target="web"> BoundaryWalk</a> ,  <a href=" https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" target="web"> Virtualrobot clients</a> 
+As in the <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html#Configuration based on Java annotations (see Lab ISS | About annotations)" target="web"> BoundaryWalk</a> project, the intermidiation components use annotations and issSupport to implement the abstaction level. <br>
+
+We want implement the application knowledge and thecnological indipendent. Therefore we considering aril command, websocket comunicatons and message buffered interaction to the robot. 
+
+<a href="../../it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui/Consolegui.java" target="code">Consolegui.java</a>  use Observer to implements its functions Observable and Observer but they are deprecated because they aren't the best configuration to make faster the asynchronous comunications. 
+
+<h2 id="IssCommSupport">Clients written in Java using observable supports</h2>
+<div class="remark" >
+The usage of a websocket library <ks>breaks</ks> the unique flow of control of the application into several threads.<br/>
+In order to exploit in a structured way the asynchronicity of the interaction, the reference design pattern
+is the <a href="https://en.wikipedia.org/wiki/Observer_pattern"  target="web"><k>Observer pattern</k></a>.
+</div>
+To facilitate the work of the application designer, we will introduce new resources, including the idea of a <i>support
+for (high-level) communications that provides operation to add/remove observers</i>, by implementing a proper interface.
+
+<center><img src="./img/issCommsLayers.png" alt="issCommsLayers" width="40%" ></center>
+<br/><br/>
+<center><table style="width:95%">
+<tbody> 
+
+<tr>
+<td>
+
+<h4>The <a href="../app/src/main/java/it/unibo/interaction/IssObserver.java" target="code"><ks>IssObserver</ks></a> interface</h4>
+At the moment, this interface defines a method <tt>handleInfo</tt> that accepts two types of arguments
+<pre>
+public interface IssObserver {
+    public void handleInfo(String info);
+    public void handleInfo(JSONObject info);
+}
+</pre>
+
+Our <k>observable supports</k> must implement an interface that adds new operations to our high-level communication interface:
+<h3>The <a href="../app/src/main/java/it/unibo/supports/IssCommSupport.java" target="code"><ks>IssCommSupport</ks></a> interface</h3>
+<pre>
+public interface <ks>IssCommSupport</ks> <k>extends <a href="../app/src/main/java/it/unibo/interaction/IssOperations.java" target="code"><ks>IssOperations</ks></a></k> {
+    void registerObserver( IssObserver obs );
+    void removeObserver( IssObserver obs );
+    void close();
+}
+</pre>
+
+</td>
+<td>
+<h4>The (new) <a href="../app/src/main/java/it/unibo/supports/IssWsSupport.java" target="code"><ks>IssWsSupport</ks></a></h4>
+The new version of the <ks>IssWsSupport</ks> must implement all the operations specified by the 
+<a href="../app/src/main/java/it/unibo/supports/IssCommSupport.java" target="code"><ks>IssCommSupport</ks></a> interface and by the annotations:
+<pre>
+<k>@ClientEndpoint</k>     <kc>//javax.websocket annotation</kc>
+public class IssWsSupport <k>implements</k> <ks>IssCommSupport</ks> {
+
+   <kc>//Callback for <ks>websockets events</ks></kc>
+   ...
+   <kc>//Implementation of <ks>IssOperations</ks></kc>   
+   ...
+   <kc>//Implementation of <ks>IssCommSupport-specific</ks> operations</kc>   
+}   
+</pre>
+
+<h4>The (new) <a href="../app/src/main/java/it/unibo/supports/IssCommsSupportFactory.java" target="code"><ks>IssCommsSupportFactory</ks></a></h4>
+Since we aim at using the new concept of observable supports for communication, our <tt>IssCommsSupportFactory</tt> must now
+provide factory methods that return an object of type
+ <a href="../app/src/main/java/it/unibo/supports/IssCommSupport.java" target="code"><ks>IssCommSupport</ks></a>:
+<pre>
+public class <a href="../app/src/main/java/it/unibo/supports/IssCommsSupportFactory.java" target="code"><ks>IssCommsSupportFactory</ks></a> {
+ <kc>//Factory Method</kc>
+ public static <ks>IssCommSupport</ks> create(Object obj ){ 
+  <kc>//obj must be properly annotated</kc>
+        ...
+ }
+    
+ public static <ks>IssCommSupport</ks> create(
+                       String protocol,String url){
+  switch( protocol ){
+   case "HTTP"  : {  return new IssHttpSupport(  url );}
+   case "WS"    : {  return new IssWsSupport( url );   }
+   default: return new IssHttpSupport(url); <m><kc>//TODO Exception</kc></m>
+  }
+ }
+</pre>
+</td>
+</tr>
+</tbody>    
+</table></center>
+
+
+<h3>Isolating the business logic (that builds a map)</h3>
+<center><table style="width:95%">
+<tbody> 
+
+<tr>
+<td style="width:45%"><a href="../app/src/main/java/it/unibo/wenv/ClientBoundaryWebsockArilAsynch.java" target="code">ClientBoundaryWebsockArilAsynch.java</a><br/>
+<hr/>
+<m>The client  <i>walks along the boundary</i> of the room, by sending commands wriiten in <ks>aril</ks>. 
+<br/><br/>
+The business logic is able to build two different types of robot-moves history:
+<ul>
+<li>a string that represents the robot path expressed as a sequence of moves. For example:
+<pre>wwwlwwwlwwwlwwwl</pre>  </li>
+<li>the places that the robot has explored, represented within a map of the room. For example
+
+<pre>
+|r, 1, 1, 1, 1, 
+|1, 0, 0, 0, 1, 
+|1, 0, 0, 0, 1, 
+|1, 1, 1, 1, 1, 
+</pre>
+
+ In this representation, we suppose that:
+
+<ol>
+<li><bc>r</bc> means: cell occupied by the robot</li>
+<li><bc>0</bc> means: cell not explored</li>
+<li><bc>1</bc> means: cell explored</li>
+<li><bc>X</bc> means: cell occupied by an obstacle</li>
+</ol>
+</li>
+</ul>
+</td>
+<td> <div class="remark" id="asynchbwjava2">
+<m>Class annotated with <a href="../app/src/main/java/it/unibo/annotations/ArilRobotSpec.java" target="code">ArilRobotSpec</a>,
+</m>
+<br/>
+<k>Key point</k>: <tt>Proactive and Reactive behaviour</tt> and  
+<a href="https://stackify.com/solid-design-principles/" target="web"><k>Single Responsibility Principle</k></a>.
+<br/><br/><m>
+<ul>
+<li>The business logic is defined in an object of class 
+<a href="../app/src/main/java/it/unibo/wenv/RobotBoundaryLogic.java" target="code"><ks>RobotBoundaryLogic</ks></a>
+that is called by the observer
+<a href="../app/src/main/java/it/unibo/wenv/RobotInputController.java" target="code"><ks>RobotInputController</ks></a>
+initialized to use the <ks>aril</ks> command-move language. </li>
+ 
+<li>
+In this way, we have further removed any detail related to the interaction with WEnv
+from the <a href="../app/src/main/java/it/unibo/wenv/RobotBoundaryLogic.java" target="code"><ks>RobotBoundaryLogic</ks></a>. 
+</li>
+<li>
+Moreover, the details related to the construction of the robot-moves history are embedded in
+the class <a href="../app/src/main/java/it/unibo/wenv/RobotMovesInfo.java" target="code"><ks>RobotMovesInfo</ks></a>.</a>.
+</li>
+</ul>
+</div>
+
+<h4>Zoomimg into the application </h3><hr/>
+ <center><img src="./img/RobotBoundaryArilZooming.png" alt="RobotBoundaryArilZooming" width="100%"></center>
+<m>
+ <hr/>
+Requires 4 Thread, because of the <a href="../app/src/main/java/it/unibo/supports/IssWsSupport.java" target="code">IssWsSupport</a>. 
+</m>
+</div>
+
+</td>
+</tr>
+ 
+</tbody>    
+</table></center>
+
+Map Util is implemented in Kotlin for the reason said in the problem analysis. 
+
+<h3>A <a href="../app/src/main/kotlin/mapRoomKotlin/mapUtil.kt" target="code"><ks>mapUtil</ks></a></h3>
+
+ 
+
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+ <!--<center><img src="./img/gridSpaceFree.png" alt="gridSpaceFree" width="80%"></center>A free space.-->
+<m>We can  build a map of the space, by exploting the fact that a <ks>aril</ks> forward/backward move 
+covers a length equals to the length <tt>DR</tt> of the robot.
+<br/> <br/> 
+Thus, we imagine to subdivide the available space into a grid of <tt>nr * nc</tt> squares of side <tt>DR</tt>.
+</m>
+</td>
+<td style="width:50%">
+  <center><img src="./img/gridSpaceObstacles.png" alt="gridSpaceObstacles" width="80%"></center>
+  A  space with obstacles.
+</td>
+
+</tr>
+</table>
+
+ 
+</td>
+<td>
+A support for the room-map is given by the following utility (written in <a href="https://kotlinlang.org/" target="web">Kotlin</a> ): 
+<a href="../app/src/main/kotlin/mapRoomKotlin/mapUtil.kt" target="code">mapUtil.kt</a> : 
+<br/>
+
+<ol>
+<li>creates a room map as a singleton;</li>
+<li>provides the operation <bc>doMove(move: String )</bc> that updates the map according to the given <ks>aril</ks> robot move
+(<tt>w | s | r | l | h </tt>)
+</li>
+<li>provides the operation <bc>getMapAndClean( ): String</bc> that returns a String-representation of the current map and
+resets the map to the empty map;
+</li>
+<li>provides the operation <bc>showMap( )</bc> that prints on the standard output the String-representation of the current map.
+</li>
+</ol>
+ <br/>
+ A demo is available in: 
+<a href="../app/src/main/kotlin/mapRoomKotlin/MainMapUsage.kt" target="code">MainMapUsage.kt</a> 
+
+</td>
+</tr>
+</table>   
+
+<br/><br/>
+ 
+</div>
+
+<h2>Testing</h2> 
+ 
+
+<h2>Deployment</h2> 
+The deployment consists in the commit of the application on a project named <ks>iss2021_resumablebw</ks> of the MY GIT repository ( <k>RRR</k> ).
+<br/><br/>
+The final commit commit has done after <k>XXX</k> hours of work.
+It hasn't finished yet
+ 
+<h2>Maintenance</h2> 
+ 
+	      	
+<br/><br/> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); color:white">
+By studentName email: student@studio.unibo.it  
+<img src="./img/teacher.gif" alt="teacher" width="10%" height="10%">
+</div> 
+</body>
+</html>
