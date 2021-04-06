@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+	font-size: 93%;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 90%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 90%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	font-size: 90%;
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	font-size: 90%;
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	 
+    font-size: 18px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+	font-size: 90%;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px;
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #ccffcc;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+
+}
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}
+div.remark{
+	background-color: #E3F2FD;
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+</style>
+    
+<head>
+   
+<title>Lab ISS | the project cautiousExplorer</title></head>
+    
+<body>
+<div id="top">
+<h1>Lab ISS | the project cautiousExplorer <font size="5"></font> </h1>
+</font> 
+
+</div>  
+
+<div class="body"> 
+<h2>Introduction </h2>
+ <k>This case-study starts to deal with the design and development of proactive/reactive software systems that use aynchronous exchange of information.
+</k>
+
+
+<h2>Requirements</h2>
+
+ <div class="remark">
+
+Design and build a software system that allow the robot described in
+
+<a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="isslm">VirtualRobot2021.html</a>  to exibit the following behaviour:
+the robot lives in a closed environment, delimited by walls that includes one or more devices (e.g. sonar) able to detect its presence;
+the robot has a den for refuge, located near a wall;
+the robot works as an explorer of the environment. Starting from its den, the robot moves (either randomly or - preferably - in a more organized way) with the aim to find the fixed obstacles around the den. The presence of mobile obstacles is (at the moment) excluded;
+since the robot is 'cautious', it returns immediately to the den as soon as it finds an obstacle. Optionally, it should also return to the den when a sonar detects its presence;
+the robot should remember the position of the obstacles found, by creating a sort of 'mental map' of the environment.
+</div>
+
+
+<h2>Requirement analysis</h2>
+<ul>
+<li><ks>closed envirorment</ks>: a room delimited by walls;</li>
+<li><ks>den</ks>: start position and refuge near a wall;</li>
+<li><ks>robot</ks>: a device able to execute move commands sent over the network, as described in the document <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="web"><ks>VirtualRobot2021.html</ks></a> provided by the customer; </li>
+ <li><ks>obstacles</ks>:are fixed which could be for example a box or walls too, they could be more than one;</li>
+<li><ks>Optionally:</ks> could meaning that the action about the sentence "the robot should also return to the den when a sonar detects its presence" has second priority about the project; </li>
+ <li><ks>Should Remember:</ks> "the robot should remeber the position of the obstacles found" it means that the robot need a way, for example a mental map, to remember the position of obstacles;  </li>
+<li><ks>Mental Map:</ks>it should be a way to represent the moves of the robot;</li>
+ <li><ks>sonar</ks>:  <a href="https://en.wikipedia.org/wiki/Sonar" target="web"> Sonar.</a></li>
+</ul>
+
+About actions:
+<ul>
+<li><ks>walk</ks>: the robot moves (either randomly or in a more organized way) with the aim to find the fixed obstacles around the den.</li>
+</ul>
+
+<h3>Requirements hierarchy </h3>
+How it is specify before optionally means that the implementation about the robot's behavior when it meet sonar could be implementedin a following moment.
+
+<h3>User stories</h3>
+
+<li>As user, I put the robot in a random collocation near a wall in a closed envirorment, which we called den; afterwards, I activate the cautiousExplorer application that moves the robot in the room.
+
+When the robot meet an obstacles it comes to its den. How the robot comes to its den it isn't specify. 
+
+When the application terminates, the TestPlan should properly check if the robot met an obstacle and if it came to its den, to check it we could see the robot's "mental map".</li>
+<li>
+	This second user story it similiar to the first one but it need to be attention if the sonar detects the presence of the robot e check it in a test plan.
+	</li> 
+
+It is important to specify thate if we check the robot moves it couldn't be a random way. 
+
+<h2>Problem analysis</h2>
+
+<h3>Port Choose</h3>
+Because the robot is the same of <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html" target="web">boundaryWalk</a>, we highlight some similiar things:
+<ol>
+<li>In the <a href="VirtualRobot2021.html#commands" target="web">VirtualRobot2021.html: commands</a> the customer states
+that the robot can receive move commands in two different ways:
+    <ul>
+    <li>by sending messages to the port <tt>8090</tt> using  <ks>HTTP POST</ks> </li>
+    <li>by sending messages to the port <tt>8091</tt> using a <ks>websocket</ks> </li>
+    </ul>
+</li>
+
+<li> With respect to the technological level, there are many libraries in many programming languages that support the
+required protcols. 
+(mental map tools)
+<div class="remark">
+If we ignore the optionally requirement the project could make in a <em>request-response</em> way, with HTTP POST, else it is important to specify that the application to comunicate with the sonar must to use websoket protocol.</div>
+</li>
+
+ <h3>Cril vs Aril</h3>
+ Using <ks>aril</ks> in an other layer makes the robot a 'logical entity' able to 'talk' with clients in a custom high-level language, it indeed means abstract "robot interaction language" .
+</ol>
+
+
+<h3>Logical architecture</h3>
+ 
+
+<table style="width:98%">
+<tbody> 
+We must design and build a <k>distributed system</k> with two software macro-components:
+        <li>the <a href="VirtualRobot2021.html" target="web"><ks>VirtualRobot</ks></a>, given by the customer</li>
+    <li>our <ks>cautionExplorer</ks> application that interacts with the robot with a <i>request-response</i> pattern</li>
+
+</tbody>
+</table>
+It is important to define <k>what the robot has to do</k>  the meet the requirements:
+<pre>
+let us define <kc>emum direction {UP,DOWN,LEFT,RIGHT}</kc> 
+the robot start in the den position, and it need to move random in the closed envirorment: 
+    1) send to the robot the request to execute a random (or not, we will see later) command <kc>move*</kc> and memorized moves,
+    until the robot response about "collision"  becomes 'true';
+    2) send to the robot the request to execute <kc>moves</kc> to  back to the den.
+</pre>
+</li>
+Some considerations about requirements: <br>
+ 1)  "the robot moves with the aim to find the fixed obstacles": for first moves the robot hasn't a "mental map" where it can take informations about where it can found the fixed obstacles.
+<br>
+ 2)"it returns immediately to the den as soon as it finds an obstacle":  if it doesn't take the same way it could happen that the robot done another collision; so we could problaly define reverse directons.
+ <br>
+
+ 3) random or preferibily organized way: if we should to memorized the robot's moves we are talking always about organized way. 
+
+
+
+</ul>
+<h2>Test Plan </h2>
+<li><ks>HYPOTHESIS-TESTPLAN 1</ks>: 
+for each moves withouth collision we add an identification in a string 
+ <kc>moves</kc> (initially empty).
+ Then we fix the time <kc>time</kc> for <ks>f,b,r,l</ks> moves so we can send to robot "random" moves and it can walk in "small steps" and memorized the moves in the stirng moves. When the robot will meet a obstacle, we will send reverse moves: if was up-> down, if was down->up, if was left->right, if was right->left. For each reverse moves we should memorized the response in another string <kc>revrse moves</kc> so we can check if the robot comes to den. 
+ We can use the string moves to build the mental map.
+
+</li>
+
+<li><ks>HYPOTHESIS-TESTPLAN 2</ks>: S moviment if we know the dimensions of closed envirorment we can setting <kc>time</kc> for moves <ks>f,b,r,l</ks> and define an <k>robot cell</k> . So for each moves we can incrementally build  a <k>envirorment map</k> about robot moves. We can know where is the robot after every command until it meet an obstacle.
+Then the robot could do the same steps to back to den.
+We can check the path when the application ends; for example(<kc>1</kc> is the cell where the robot passed):
+<pre>
+|0, d, 0, 0, 0, 
+|0, 1, 0, 0, 0, 
+|0, 1, 0, 0, 0, 
+|0, s, 0, 0, 0, 
+|0, 0, 0, 0, 0, X, 
+|X, 
+</pre>
+</li>
+
+In both cases of test plan we will should consider the possibility of the optionally presence of the sonar in the application. The applications should be to listening if the sona detects the presence of the robot and then it should have the same behaviour if the robots meet an obstacles. 
+</li>
+<h2>Project </h2>
+<h2>Testing </h2>
+<h2>Deployment </h2>
+<h2>Maintenance </h2>
+
+ 
+	      	
+<br/><br/> 	
+</div>  
+
+<div >
+<hr/>
+<img src="./noemiValentini.png" alt="teacher" width="5%" height="5%"> noemi.valentini5@studio.unibo.it 
+
+</div> 
+</body>
