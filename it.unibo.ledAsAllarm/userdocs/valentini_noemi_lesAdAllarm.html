@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+	font-size: 93%;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 90%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 90%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	font-size: 90%;
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	font-size: 90%;
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	 
+    font-size: 18px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+	font-size: 90%;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px;
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #ccffcc;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+
+}
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}
+div.remark{
+	background-color: #E3F2FD;
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+</style>
+    
+<head>
+   
+<title>TemplateToFill</title></head>
+    
+<body>
+<div id="top">
+<h1>LABORATORIO DI INGEGNERIA DEI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+ 
+ 
+<h2>Requirements</h2>
+
+ 
+<div class="remark">
+TODO (caso di studio ledAsAlarm): turn on a led when a sonar detected a distance d<=V. V is an integer value preixed, it is between 5 and 80.
+</div>
+
+ 
+
+<h2>Requirement analysis</h2>
+ <div class="remark">
+
+ <li> <k> led: </k>a light-emitting diode (a semiconductor diode which glows when a voltage is applied). </li>
+ <li> <k> distance: </k>a distance between the sonar and everething element is detected by the sonar.  </li>
+
+</div>
+<h3> Users Story </h3>
+The user just have to launch the application and put something at the correct distance to verify if the led turn on
+<h2>Problem analysis</h2>
+<div>
+The application is based on the interaction of two components which are a sonar and a led. It is not specify where this components are situated. So the most important specifies to considerate are: 
+<li> <k>Comunication between the components:</k>
+    The sonar should be listening if something will be near itself, then it should be able to send a command to the led and make it on. 
+    <a  href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/it.unibo.qakDistrib/userDocs/LabQakDistributed2021.html"></a>
+         QActors distribuited system, are useful to implement this application because they could helped for the comunication and make an easly implementation.  
+ <li> <k>Tecnology indipendence</k><br>
+Both this problems was analyzed in     <a  href ="./noemi_valentini_btnl1.html"> ButtonLed_es01</a>
+
+ </div>
+ 
+<h3>  Logical Architecture </h3>
+ 
+
+   <center><img src =" ./img/SonarLed.png " alt="architecture" with="15%" height="30%" >
+</center>   
+      
+<h3> Planning to Develop the application </h3>
+
+ <div class="remark">
+
+The costumers said it problably could be done in one hour.
+
+</div>
+
+<h2>Test plans</h2> 
+
+
+<h2>Project</h2> 
+ <div>
+ We want to "connect" the      <a href ="./led.qak.txt">Led.qak</a>
+ with the <a href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/it.unibo.rasp2021/userDocs/LabRasp2021.html#sonar">sonarnaive.qak</a><br>
+ Anyway we can follow the structure of a resource/callers like in the qakDitribuition example. The sonar, or something which should observe the sonar event, will be like a resource and the callers will be able to send the command to the led <a href ="./caller.qak">caller.</a>
+
+A sonar observer could be implemented in this way: <a href ="./sonarobserver.qak">sonarobserver</a>.
+</div>
+
+<h2>Testing</h2> 
+ 
+
+<h2>Deployment</h2> 
+
+ 
+<h2>Maintenance</h2> 
+ 
+<!-- USEFUL
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+-->
+	      	
+<br/><br/> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
+By NoemiValentini email: noemi.valentini5@studio.unibo.it  
+<img src="./img/noemiValentini.jpeg" alt="mbot" width="15%" height="15%">
+</div> 
+</body>
+</html>

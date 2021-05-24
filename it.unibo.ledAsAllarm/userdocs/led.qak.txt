@@ -1,0 +1,42 @@
+/*
+ * Executes the command (dispatch) ledCmd : ledCmd(X) X=on/off
+ * with reference to a led on pin BCM25 (wpi6) GND pyhsicalPIN-20
+ */ 
+QActor led context ctxblses1 {  
+[# 
+	var counter = 0 
+	//val leddev = resources.bls.kotlin.led.create()	
+#]    
+	State s0 initial {  
+		//run resources.it.unibo.bls.devices.gui.LedAsGui.create( )
+ 		println("led started")
+ 		updateResource [# "led OFF "#]
+	} 
+	Goto waitCmd   
+	 
+	State waitCmd{  
+		//println("led waits ...") 
+	}   
+	Transition t0     
+ 		whenMsg ledCmd            -> handleLedCmd
+  	  
+	State  handleLedCmd{  
+		printCurrentMessage   
+		
+		onMsg ( ledCmd : ledCmd(X) ) { 
+			[# val Cmd = payloadArg(0)
+			   counter++
+			#]
+			if[# Cmd == "on" #] {  
+ 				println( "led ON counter=$counter" )
+				machineExec "\"sudo bash led25GpioTurnOn.sh\""
+ 				updateResource [# "ledOn ${counter}" #]
+			}else{ // the application shouldn't do turn off command
+				println( "led OFF counter=$counter" )
+				machineExec "\"sudo bash led25GpioTurnOff.sh\""
+				updateResource [# "ledOff ${counter}" #]
+			}
+		}
+	}	
+	Goto waitCmd        
+}

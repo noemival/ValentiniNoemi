@@ -1,0 +1,59 @@
+System -msglog radarresource
+//mqttBroker "broker.hivemq.com" : 1883  
+//mqttBroker "localhost" : 1883 eventTopic "unibo/radar"
+
+/*
+ *polar:polar(D,A) can be perceived as a dispatch, as a request or as an event
+ */
+//Request  polar        : polar(D,A) 
+//Reply    fromRadarGui : fromRadarGui(X)     
+
+//Dispatch polar        : polar(D,A)   
+//Event    polar        : polar(D,A) 
+ 
+ Request cmd 		: cmd(X) // X =  w | s | a | d | h
+Reply   replytocmd  : replytocmd(X)
+Event   alarm       : alarm(X)
+Context ctxradarresource ip [ host= "127.0.0.1"  port= 8038 ]  
+
+/* 
+ * -----------------------------------------------------------
+ * Embeds the radarpojo and provides message-based interaction
+ * (it is the 'exoskeleton - decorator')
+ * -----------------------------------------------------------
+ */ 
+QActor radarresource context ctxradarresource{ 
+[# var DoReply     = false
+  var DistanceStr  = "0"
+  var Distance     = 0
+  var Angle        = "0"
+#] 
+	State s0 initial{ 
+		println("resource start") 
+		
+		}
+	Goto waitForDataToShow
+	
+	State waitForDataToShow{   } 
+	Transition t0  
+				whenRequest cmd -> handleRequestCmd
+		
+  State handleRequestCmd{
+		printCurrentMessage
+	//	updateResource [# resourceInfo() #]
+		onMsg( cmd : cmd(X) ){
+			emit alarm : alarm(fire)
+				
+  		if [# Distance <= 80 #]  {   
+				//to see what happens in the system ...
+			[# val ANSW = "answerFor_${payloadArg(0)}" #]
+			replyTo cmd with replytocmd : replytocmd( $ANSW ) 
+ 		}   	
+		}		 		
+	}
+	Goto waitForDataToShow	
+	//WARNING: the current message is lost after an empty-move
+ 
+
+	
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+	font-size: 93%;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 90%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 90%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	font-size: 90%;
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	font-size: 90%;
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	 
+    font-size: 18px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+	font-size: 90%;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px;
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #ccffcc;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+
+}
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}
+div.remark{
+	background-color: #E3F2FD;
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+</style>
+    
+<head>
+   
+<title>TemplateToFill</title></head>
+    
+<body>
+<div id="top">
+<h1>LABORATORIO DI INGEGNERIA DEI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+ 
+ 
+<h2>Requirements</h2>
+
+ 
+<div class="remark">
+Design and build a ButtonLed software system (bls) that makes human users able to control a led according to seguent control policies each time a button is pressed.
+ Turn on/off a led using a button (ON/OFF). The system should be a distributed system, in which the Button and the Led run on a different computational supports, e.g. a Conventional PC, a RaspberryPi or Arduino.
+</div>
+
+ 
+
+<h2>Requirement analysis</h2>
+ <div class="remark">
+
+We shall clarify the meaning of the names and of the verbs in the requirements:
+ <li> <k>button:</k> a small device on a piece of electrical or electronic equipment which is pressed to operate it. It could be on every devices.</li>
+ <li> <k>human user able:</k> it must to be accesible to human's abilities </li>
+ <li> <k> led: </k>a light-emitting diode (a semiconductor diode which glows when a voltage is applied). </li>
+ <li> <k>different computational supports:</k> supports are not specify, it is important to underline that they are different so they need to comunicate each other. </li>
+
+</div>
+<h3> Users Story </h3>
+
+ <div class="remark">
+When the user push the button present in a support, the led switch its state: if it is was on it will become off and the other way around.
+</div>
+
+<h2>Problem analysis</h2>
+
+ </div>
+ <h3> Case Study </h3>
+ <div class="remark">
+
+When the button is pressed we need an application that is listening mode. The messages from the button should be like an event for the possible application. 
+Then the information that the button was pressed should be send to the led and it must shuld understand what it hve to do. 
+Our application should implement the Listener and how send information to the led.  
+</div>
+<h3> Possible Tecnologies </h3>
+
+ <div class="remark">
+ 	The main problems are:<br>
+ 	<li> <k>Comunication between the applications</k><br>
+
+Distribuited systems need comunicate with each other, we should define how this could happened.   
+
+A possible solution could be a RESTFUL Api like was implemented in this link <a  href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/webspring.demo/userDocs/RobotAPI2021.html">RobotApi2021.</a>
+Our situation is Human-to-Machine interaction using request-response pattern.
+Another possible solution could be use a support for WebSocket which interact between two application. 
+But how it was specify in the case study button <b>Listener perceives
+the message as an event</b>, so the request response isn't able to implement that, they implement <i>synchronous</i> messages, they should be <i> asynchronous</i> It must be listeneing in a port whent it start comunication until  the application is started. Event messages could be implemented through WebSockets support as they was implemented in <a  href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/it.unibo.kotlinSupports/userDocs/ActorWithKotlinSupport.html">ActorWithKotlinSupport.html</a> or thourght using <a  href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/it.unibo.qakDistrib/userDocs/LabQakDistributed2021.html">QActors.</a> Anyway QActors support protocols like CoAP, as an example of a lightweight REST protocol suited for M2M interaction. <br></li>
+<li><k>Tecnology indipendent</k><br>
+The support devices aren't specify by the customer, our implementation shoud be focus to designe tecnologies indipendent software as most is possible. It introduce an requirements about the specialitation of the application and a possible Logical architeture where the tasks are appropriately assigned. 
+ </li>
+
+
+</div></div>
+ 
+<h3>  Logical Architecture </h3>
+<h4> General Considerations </h4>
+<b>LedApplication</b> <br>
+
+<center><table style="width:95%"> 
+<tbody>
+    <tr>
+<td >
+    We don't know the tecnologies used. So we don't know how to interact with led. in any case we have to implement an actor that give information about le led to send to the led.  
+<td><center><img src="./img/generalAppl1.png " alt="InteractionActors" width="100%"></center>
+</td>
+</td>
+<td>
+There we suppose that the appliction wich give the command to the led should be implemented on led support. In this case it must be more difficult if the led are more than one. <td><center><img src="./img/generalAppl2.png " alt="InteractionActors" width="100%"></center>
+ </td>
+ </tr>
+</td>
+
+
+
+</tbody>    
+</table></center>
+<b>ButtonListener</b> <br>
+In both cases we consider the bottonListener listening on a port. 
+A botton in a distribuited system is like an Osservable, but differently a local system it must be considered as a "generator" of EVENT. 
+<h4> Using QActors </h4>
+Focus on ButtonListner like a <a  href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/it.unibo.qakDistrib/userDocs/LabQakDistributed2021.html#callers">QActors.</a><br> The implementation will be:
+<a  href ="file:///Users/noemivalentini/Documents/GitHub/issLab2021/it.unibo.rasp2021/userDocs/LabRasp2021.html#led">blses1_onoff.qak.</a><br>
+<h3> Planning to Develop the application </h3>
+
+ <div class="remark">
+
+
+</div>
+
+<h2>Test plans</h2> 
+ <div class="remark">
+A possible TestPlan could be focus on the comunications, between two application. Futhermore  HTTP protocol using to comunicate to the led is useful to understand, helped by something which coordinate the led, if the led is working or not. 
+
+</div>
+
+
+<h2>Project</h2> 
+ 
+</div>
+
+<h2>Testing</h2> 
+ 
+
+<h2>Deployment</h2> 
+
+ 
+<h2>Maintenance</h2> 
+ 
+<!-- USEFUL
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+-->
+	      	
+<br/><br/> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
+By NoemiValentini email: noemi.valentini5@studio.unibo.it  
+<img src="./img/noemiValentini.jpeg" alt="mbot" width="15%" height="15%">
+</div> 
+</body>
+</html>

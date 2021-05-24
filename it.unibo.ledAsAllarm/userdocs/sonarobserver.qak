@@ -1,0 +1,27 @@
+System sonarobserver
+mqttBroker "broker.hivemq.com" :  1883   eventTopic "unibo/sonar/events"
+
+Event    sonarRobot : sonar( V ) 
+// Dispatch ledCmd : ledCmd(X)   
+Event sonarAlarm: sonarAlarm(x)
+Context ctxdummy           ip [host="192.168.1.14" port=8068] 	 	 
+Context ctxsonarobserver   ip [host="localhost"    port=8083]
+   
+//Context ctxcallers  ip [ host= "localhost" port= 8050 ]  
+//ExternalQActor led context ctxcallers
+QActor sonarobserver context ctxsonarobserver {
+	
+	State s0 initial {  		
+ 		println("sonarobserver ledobserver waiting ..")
+ 		
+ 	} 
+ 	Transition t0 whenEvent  sonarRobot -> handleSonarEvent
+ 	
+ 	State handleSonarEvent{
+ 		emit sonarAlarm: sonarAlarm(fire)
+ 		printCurrentMessage
+ 	}
+ 	
+ 	
+		 Goto s0
+}
